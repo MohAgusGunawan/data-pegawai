@@ -52,14 +52,18 @@
                 </li>
             </ul>
             <ul class="logout">
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+                
                 <li>
-                   <a href="{{ route('login') }}">
-                    <i class="fa-solid fa-right-from-bracket fa-2x"></i>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="fa-solid fa-right-from-bracket fa-2x"></i>
                         <span class="nav-text">
                             Keluar
                         </span>
                     </a>
-                </li>  
+                </li> 
             </ul>
         </nav>
   </body>

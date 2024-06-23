@@ -19,7 +19,7 @@ class CreateGajisTable extends Migration
             $table->timestamps();
 
             // Foreign keys
-            $table->foreign('id_pegawai')->references('id_pegawai')->on('pegawais');
+            $table->foreign('id_pegawai')->references('id')->on('pegawais');
         });
     }
 

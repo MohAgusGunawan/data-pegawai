@@ -77,4 +77,15 @@
     a:hover {
         color: fuchsia;
     }
+
+    @media (max-width: 768px) {
+        .new_footer_top .footer_bg .footer_bg_one {
+            -webkit-animation: myfirst 15s linear infinite;
+            animation: myfirst 15s linear infinite;
+        }
+        .new_footer_top .footer_bg .footer_bg_two {
+            -webkit-animation: myfirst 20s linear infinite;
+            animation: myfirst 20s linear infinite;
+        }
+    }
     </style>

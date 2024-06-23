@@ -1,7 +1,7 @@
 @extends('partial.main')
 @section('title', 'Dashboard Data Pegawai')
 <head>
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pegawai.css') }}">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
 </head>
 @section('content')
@@ -27,16 +27,6 @@
       </script>
   @endif
 
-<div class="charts-row">
-    <div class="chart-container">
-        <h4>Departemen</h4>
-        <canvas id="deptChart"></canvas>
-    </div>
-    <div class="chart-container">
-        <h4>Jabatan</h4>
-        <canvas id="jobChart"></canvas>
-    </div>
-</div>
 <div class="table-container">
   <div class="head d-flex justify-content-between align-items-center mb-2">
     <h4 class="mb-0">Data Pegawai</h4>
@@ -54,16 +44,16 @@
         <th>No</th>
         <th>Nama Depan</th>
         <th>Nama Belakang</th>
-        <th>Email</th>
         <th>Nip</th>
-        <th>Telepon</th>
         <th>Departemen</th>
         <th>Jabatan</th>
+        <th>Gaji</th>
+        <th>Aksi</th>
       </tr>
     </thead>
 </table>  
 </div>
 </div>
-@include('partial.data')
+@include('gaji.data')
 
 @endsection

@@ -30,40 +30,7 @@
 #tbDashboard tbody tr:nth-child(even) td {
     background-color: #f9f9f9;
 }
-.charts-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-top: 20px;
-}
 
-/* .charts-row {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-} */
-
-.chart-container {
-    width: 48%;
-    height: 300px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.chart-container h4 {
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.chart-container canvas {
-    width: 100%;
-    height: 100%;
-}
 .dataTables_wrapper .dataTables_filter {
     margin-bottom: 10px;
 }
@@ -98,11 +65,7 @@ td {
 }
 
 @media (max-width: 768px) {
-    .chart-container {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-    .charts-row {
+    .table-container {
         margin-top: 50px;
     }
     .table-container h4 {

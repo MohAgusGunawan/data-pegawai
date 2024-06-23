@@ -1,7 +1,7 @@
 @extends('partial.main')
 @section('title', 'Dashboard Data Pegawai')
 <head>
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pegawai.css') }}">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
 </head>
 @section('content')
@@ -28,11 +28,26 @@
   @endif
   
   <div class="table-container">
+    <div class="head d-flex justify-content-between align-items-center mb-2">
+      <h4 class="mb-0">Data Pegawai</h4>
+      <div class="head d-flex justify-content-between align-items-center mb-2">
+        <a href="{{ route('pegawai.create') }}" class="btn btn-outline-info btn-sm d-flex align-items-center" id="btnTambah" style="margin-right: 10px;">
+          <i class="fa-solid fa-plus pluss p-2"></i>
+        </a>
+        <form action="{{ route('pegawai.downloadReport') }}" method="GET" class="mb-0">
+          <button type="submit" class="btn btn-outline-success btn-sm d-flex align-items-center" id="bt-download">
+            <i class="fa-solid fa-file-excel p-2"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="table-wrapper">
     <table id="tbDashboard" class="table table-responsive table-hover">
-      <h4>Data Pegawai</h4>
       <thead>
         <tr>
           <th>No</th>
+          <th>Foto</th>
           <th>Nama Depan</th>
           <th>Nama Belakang</th>
           <th>Tanggal Lahir</th>
@@ -44,6 +59,7 @@
           <th>Kode Pos</th>
           <th>Telepon</th>
           <th>Email</th>
+          <th>Nip</th>
           <th>Departemen</th>
           <th>Jabatan</th>
           <th>Aksi</th>
@@ -51,85 +67,8 @@
       </thead>
     </table>
   </div>  
+  </div>  
 
-<!-- Load jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- Load DataTables -->
-<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-
-<script>
-  $(document).ready(function() {
-  var tabel = $('#tbDashboard').DataTable({
-    processing: true,
-    serverSide: true,
-    ajax: "{{ route('pegawai') }}",
-    columns: [
-      { 
-        data: null,
-        name: 'id',
-        orderable: false,
-        searchable: false,
-        render: function (data, type, row, meta) {
-          return meta.row + 1;
-        }
-      },
-      { data: 'nama_depan' },
-      { data: 'nama_belakang' },
-      { data: 'tanggal_lahir' },
-      { data: 'tanggal_masuk' },
-      { data: 'jenis_kelamin' },
-      { data: 'alamat' },
-      { data: 'kota' },
-      { data: 'provinsi' },
-      { data: 'kode_pos' },
-      { 
-        data: 'nomor_telepon',
-        render: function (data, type, row, meta) {
-          return '<a href="https://wa.me/' + data + '" target="_blank">' + data + '</a>';
-        }
-      },
-      { data: 'email' },
-      { data: 'nama_departemen' },
-      { data: 'nama_jabatan' },
-      {
-    data: null,
-    orderable: false,
-    searchable: false,
-    render: function (data, type, row, meta) {
-        return '<a href="/pegawais/' + row.id + '/edit" class="btn btn-primary">Edit</a>' +
-               ' <button type="button" class="btn btn-danger delete-btn" data-id="' + row.id + '">Delete</button>';
-    }
-}
-
-    ],
-    aLengthMenu: [
-      [5, 10, 15, -1],
-      [5, 10, 15, "All"]
-    ],
-    iDisplayLength: 10,
-    language: {
-      paginate: {
-        previous: "Sebelumnya",
-        next: "Selanjutnya"
-      },
-      info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
-      search: "Cari:",
-      lengthMenu: "Tampilkan _MENU_ entri",
-      zeroRecords: "Tidak ada data pegawai!",
-      infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
-      infoFiltered: "(disaring dari _MAX_ entri keseluruhan)"
-    },
-    responsive: true,
-    columnDefs: [
-      {
-        orderable: false,
-        targets: 0
-      }
-    ]
-  });
-});
-
-</script>
+@include('pegawai.data')
 
 @endsection

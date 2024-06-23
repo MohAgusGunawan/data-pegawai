@@ -10,7 +10,7 @@
 
 <body>
   <div id="particles-js"></div>
-  <form action="{{ route('login') }}" method="POST">
+  <form action="/autentikasi" method="POST">
     @csrf
   <div class="ring">
     <i style="--clr:#00ff0a;"></i>

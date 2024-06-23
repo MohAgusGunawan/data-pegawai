@@ -78,11 +78,11 @@ width:90px;
   font-family: 'Titillium Web', sans-serif;
 }
 
-.main-menu>ul.logout {
+/* .main-menu>ul.logout {
 position:absolute;
 left:0;
 bottom:0;
-}
+} */
 
 .no-touch .scrollable.hover {
 overflow-y:hidden;
@@ -117,5 +117,35 @@ background-color: aquamarine;
 
 body {
   font-family: "Roboto", sans-serif;
+}
+
+@media (max-width: 768px) {
+  .main-menu {
+    /* display: none; */
+    width: 100%;
+    height: 40px;
+  }
+  .main-menu li {
+    display: inline-block;
+    width: auto;
+  }
+  .main-menu li > a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      text-align: center;
+  }
+  .main-menu .nav-text {
+    display: none; 
+  }
+  .main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
+    background-color: transparent !important;
+  }
+  .main-menu:hover,nav.main-menu.expanded {
+  width:100%;
+  }
+  
 }
  </style>

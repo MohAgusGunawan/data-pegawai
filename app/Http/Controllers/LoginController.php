@@ -14,38 +14,33 @@ use Illuminate\Auth\Events\PasswordReset;
 
 class LoginController extends Controller
 {
-    use AuthenticatesUsers;
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-    }
     /**
      * Display a listing of the resource.
      */
-    // public function index()
-    // {
-    //     return view('dashboard');
-    // }
+    public function index()
+    {
+        return view('dashboard');
+    }
 
-    // public function autentikasi(Request $request)
-    // {
-    //     // Validate the request
-    //     $request->validate([
-    //         'email' => 'required|email',
-    //         'password' => 'required',
-    //     ]);
+    public function autentikasi(Request $request)
+    {
+        // Validate the request
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-    //     $credentials = $request->only('email', 'password');
+        $credentials = $request->only('email', 'password');
 
-    //     // dd(Auth::attempt($credentials));
-    //     if (Auth::attempt($credentials)) {
+        // dd(Auth::attempt($credentials));
+        if (Auth::attempt($credentials)) {
 
-    //         return redirect()->intended('dashboard')->with('success', 'Login berhasil 👮‍♂️');
-    //     } else {
-    //         return redirect()->route('login')->with('error', 'Email atau password salah!');
-    //     }
+            return redirect()->intended('dashboard')->with('success', 'Login berhasil 👮‍♂️');
+        } else {
+            return redirect()->route('login')->with('error', 'Email atau password salah!');
+        }
 
-    // }
+    }
 
     /**
      * Show the form for creating a new resource.

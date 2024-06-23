@@ -14,6 +14,7 @@ class Pegawai extends Model
     protected $primaryKey = 'id'; // Primary key dari tabel
 
     protected $fillable = [
+        'foto_pegawai',
         'nama_depan',
         'nama_belakang',
         'tanggal_lahir',
@@ -25,6 +26,7 @@ class Pegawai extends Model
         'kode_pos',
         'nomor_telepon',
         'email',
+        'nip',
         'id_departemen',
         'id_jabatan',
     ];

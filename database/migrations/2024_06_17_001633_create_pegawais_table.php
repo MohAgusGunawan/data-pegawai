@@ -12,7 +12,8 @@ class CreatePegawaisTable extends Migration
     public function up(): void
     {
         Schema::create('pegawais', function (Blueprint $table) {
-            $table->id('id_pegawai');
+            $table->id('id');
+            $table->string('foto_pegawai')->nullable(); 
             $table->string('nama_depan', 50);
             $table->string('nama_belakang', 50);
             $table->date('tanggal_lahir')->nullable();
@@ -24,6 +25,7 @@ class CreatePegawaisTable extends Migration
             $table->string('kode_pos', 10)->nullable();
             $table->string('nomor_telepon', 15)->nullable();
             $table->string('email', 100)->unique();
+            $table->string('nip', 20)->unique();
             $table->unsignedBigInteger('id_departemen')->nullable();
             $table->unsignedBigInteger('id_jabatan')->nullable();
             $table->timestamps();

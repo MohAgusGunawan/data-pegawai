@@ -8,6 +8,8 @@
   var tabel = $('#tbDashboard').DataTable({
     processing: true,
     serverSide: true,
+    responsive: true,
+    scrollX: true,
     fixedHeader: {
         header: true,
         footer: true
@@ -15,13 +17,14 @@
     ajax: "{{ route('pegawai.index') }}",
     columns: [
       { 
-        data: null,
-        name: 'id',
-        orderable: false,
-        searchable: false,
-        render: function (data, type, row, meta) {
-          return meta.row + 1;
-        }
+          data: null,
+          name: 'id',
+          orderable: false,
+          searchable: false,
+          render: function (data, type, row, meta) {
+            var pageInfo = $('#tbDashboard').DataTable().page.info();
+            return pageInfo.start + meta.row + 1;
+          }
       },
       {
         data: 'foto_pegawai_url',
@@ -48,6 +51,7 @@
       { data: 'nip' },
       { data: 'nama_departemen' },
       { data: 'nama_jabatan' },
+      { data: 'gaji' },
       {
         data: null,
         orderable: false,
@@ -85,48 +89,45 @@
   });
 });
 
- $(document).ready(function() {
-   // Event listener untuk tombol delete
-   $('#tbDashboard').on('click', '.delete-btn', function() {
-     var id = $(this).data('id');
-     Swal.fire({
-       title: 'Apakah Anda yakin?',
-       text: "Anda tidak akan dapat mengembalikan ini!",
-       icon: 'warning',
-       showCancelButton: true,
-       confirmButtonColor: '#3085d6',
-       cancelButtonColor: '#d33',
-       confirmButtonText: 'Ya, hapus saja!',
-       cancelButtonText: 'Batal'
-     }).then((result) => {
-       if (result.isConfirmed) {
-         $.ajax({
-           url: '/pegawai/' + id,
-           type: 'DELETE',
-           data: {
-             _token: '{{ csrf_token() }}'
-           },
-           success: function(response) {
-             // Tampilkan pesan SweetAlert bahwa data berhasil dihapus
-             Swal.fire(
-               'Terhapus!',
-               'Data pegawai berhasil dihapus.',
-               'success'
-             );
-             // Reload tabel setelah berhasil menghapus
-             $('#tbDashboard').DataTable().ajax.reload();
-           },
-           error: function(xhr, status, error) {
-             console.error(xhr);
-             Swal.fire(
-               'Gagal!',
-               'Terjadi kesalahan saat menghapus data: ' + error,
-               'error'
-             );
-           }
-         });
-       }
-     });
-   });
- });
+$('#tbDashboard').on('click', '.delete-btn', function() {
+    var id = $(this).data('id');
+    Swal.fire({
+      title: 'Apakah Anda yakin?',
+      text: "Anda tidak akan dapat mengembalikan ini!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya, hapus saja!',
+      cancelButtonText: 'Batal'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: '/pegawai/' + id,
+          type: 'DELETE',
+          data: {
+            _token: '{{ csrf_token() }}'
+          },
+          success: function(response) {
+            // Tampilkan pesan SweetAlert bahwa data berhasil dihapus
+            Swal.fire(
+              'Terhapus!',
+              'Data pegawai berhasil dihapus.',
+              'success'
+            );
+            // Reload tabel setelah berhasil menghapus
+            $('#tbDashboard').DataTable().ajax.reload();
+          },
+          error: function(xhr, status, error) {
+            console.error(xhr);
+            Swal.fire(
+              'Gagal!',
+              'Terjadi kesalahan saat menghapus data: ' + error,
+              'error'
+            );
+          }
+        });
+      }
+    });
+  });
 </script>

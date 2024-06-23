@@ -59,6 +59,7 @@
         <th>Telepon</th>
         <th>Departemen</th>
         <th>Jabatan</th>
+        <th>Gaji</th>
       </tr>
     </thead>
 </table>  

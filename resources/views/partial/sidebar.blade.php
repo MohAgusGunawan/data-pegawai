@@ -18,32 +18,6 @@
                         </span>
                     </a>
                 </li>
-                {{-- <li>
-                   <a href="#">
-                    <i class="fa-solid fa-city fa-2x"></i>
-                        <span class="nav-text">
-                            Departemen
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa-solid fa-street-view fa-2x"></i>
-                        <span class="nav-text">
-                            Jabatan
-                        </span>
-                    </a>
-                </li> --}}
-                <li>
-                    <a href="{{ route('gaji') }}">
-                        <i class="fa-solid fa-hand-holding-dollar fa-2x"></i>
-                        <span class="nav-text">
-                            Gaji
-                        </span>
-                    </a>
-                </li>
-            </ul>
-            <ul class="logout">
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>

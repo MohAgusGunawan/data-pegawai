@@ -55,6 +55,12 @@
         tabel = $('#tbDashboard').DataTable({
             processing: true,
             serverSide: true,
+            responsive: true,
+            scrollX: true,
+            fixedHeader: {
+                header: true,
+                footer: true
+            },
             ajax: "{{ route('dashboard.index') }}",
             columns: [
                 {
@@ -63,7 +69,8 @@
                     orderable: false,
                     searchable: false,
                     render: function (data, type, row, meta) {
-                        return meta.row + 1;
+                        var pageInfo = $('#tbDashboard').DataTable().page.info();
+                        return pageInfo.start + meta.row + 1;
                     }
                 },
                 {
@@ -90,6 +97,9 @@
                 },
                 {
                     data: 'nama_jabatan'
+                },
+                {
+                    data: 'gaji'
                 }
             ],
             aLengthMenu: [

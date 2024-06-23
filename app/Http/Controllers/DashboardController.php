@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pegawai;
 use App\Models\Departemen;
 use App\Models\Jabatan;
+use App\Models\Gaji;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 use Rap2hpoutre\FastExcel\FastExcel;
@@ -52,18 +53,17 @@ class DashboardController extends Controller
             ->where('jabatans.nama_jabatan', 'Intern')
             ->count();
 
-
         $datas = DB::table('pegawais')
             ->join('departemens', 'pegawais.id_departemen', '=', 'departemens.id_departemen')
             ->join('jabatans', 'pegawais.id_jabatan', '=', 'jabatans.id_jabatan')
-            ->select('pegawais.nama_depan', 'pegawais.nama_belakang', 'pegawais.email', 'pegawais.nip', 'pegawais.nomor_telepon', 'departemens.nama_departemen', 'jabatans.nama_jabatan')
+            ->select('pegawais.nama_depan', 'pegawais.nama_belakang', 'pegawais.email', 'pegawais.nip', 'pegawais.nomor_telepon', 'departemens.nama_departemen', 'jabatans.nama_jabatan', 'jabatans.gaji')
             ->get();
 
         if ($request->ajax()) {
             $data = DB::table('pegawais')
                 ->join('departemens', 'pegawais.id_departemen', '=', 'departemens.id_departemen')
                 ->join('jabatans', 'pegawais.id_jabatan', '=', 'jabatans.id_jabatan')
-                ->select('pegawais.nama_depan', 'pegawais.nama_belakang', 'pegawais.email', 'pegawais.nip', 'pegawais.nomor_telepon', 'departemens.nama_departemen', 'jabatans.nama_jabatan')
+                ->select('pegawais.nama_depan', 'pegawais.nama_belakang', 'pegawais.email', 'pegawais.nip', 'pegawais.nomor_telepon', 'departemens.nama_departemen', 'jabatans.nama_jabatan', 'jabatans.gaji')
                 ->get();
 
             return Datatables::of($data)->make(true);
@@ -103,6 +103,7 @@ class DashboardController extends Controller
                 'Nomor Telepon' => $pegawai->nomor_telepon,
                 'Departemen' => optional($pegawai->departemen)->nama_departemen,
                 'Jabatan' => optional($pegawai->jabatan)->nama_jabatan,
+                'gaji' => $pegawai->jabatan->gaji,
             ];
         });
 

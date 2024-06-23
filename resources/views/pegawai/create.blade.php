@@ -33,7 +33,7 @@
                     <input type="file" class="custom-file-input" id="foto_pegawai" name="foto_pegawai" onchange="previewImage(event)">
                     <label class="custom-file-label" for="foto_pegawai">Choose file</label>
                 </div>
-                <img id="img-preview" src="{{ asset('storage/images/default.jpg') }}" alt="Foto Pegawai" class="img-thumbnail img-preview mt-2">
+                <img id="img-preview" src="" alt="Foto Pegawai" class="img-thumbnail img-preview mt-2">
             </div>
 
             <div class="form-group">

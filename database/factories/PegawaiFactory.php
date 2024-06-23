@@ -45,7 +45,7 @@ class PegawaiFactory extends Factory
         
 
         return [
-            'foto_pegawai' => $this->faker->image('storage/app/public/images', 640, 480, null, false), 
+            'foto_pegawai' => $faker->image(storage_path('app/public/images'), 640, 480, null, false),
             'nama_depan' => $this->faker->firstName,
             'nama_belakang' => $this->faker->lastName,
             'tanggal_lahir' => $this->faker->date,

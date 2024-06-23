@@ -62,6 +62,7 @@
           <th>Nip</th>
           <th>Departemen</th>
           <th>Jabatan</th>
+          <th>Gaji</th>
           <th>Aksi</th>
         </tr>
       </thead>

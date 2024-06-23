@@ -22,11 +22,6 @@ use App\Http\Controllers\GajiController;
 | Halaman Landing Page
 |--------------------------------------------------------------------------
 */
-// Route::get('/', function () {
-//     return view('auth.login');
-// });
-// Route::post('/autentikasi', [LoginController::class, 'autentikasi']);
-
 Auth::routes();
 
 // Group middleware auth
@@ -37,18 +32,28 @@ Route::group(['middleware' => 'auth'], function() {
     |--------------------------------------------------------------------------
     */
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     
     /*
     |--------------------------------------------------------------------------
     | Halaman Pegawai
     |--------------------------------------------------------------------------
     */
-    Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai');
+    Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai.index');
     
     /*
     |--------------------------------------------------------------------------
     | Halaman CRUD
     |--------------------------------------------------------------------------
     */
-    Route::resource('pegawais', PegawaiController::class);
+    Route::resource('pegawai', PegawaiController::class);
+    Route::resource('dashboard', DashboardController::class);
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Download Laporan
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/pegawai/download/1', [PegawaiController::class, 'downloadReport'])->name('pegawai.downloadReport');
+    Route::get('/dashboard/download/1', [DashboardController::class, 'downloadReport'])->name('dashboard.downloadReport');
 });

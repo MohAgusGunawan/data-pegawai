@@ -4,13 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Data Pegawai</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
   <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
 
 <body>
   <div id="particles-js"></div>
-  <form action="/autentikasi" method="POST">
+  <form action="{{ route('login') }}" method="POST">
     @csrf
   <div class="ring">
     <i style="--clr:#00ff0a;"></i>
@@ -56,7 +55,7 @@
       </script>
   @endif
   
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <script src="{{ asset('js/login.js') }}"></script>
 </body>

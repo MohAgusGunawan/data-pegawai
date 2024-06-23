@@ -23,7 +23,7 @@ class PegawaiController extends Controller
         $datas = DB::table('pegawais')
             ->join('departemens', 'pegawais.id_departemen', '=', 'departemens.id_departemen')
             ->join('jabatans', 'pegawais.id_jabatan', '=', 'jabatans.id_jabatan')
-            ->select('pegawais.*', 'departemens.nama_departemen', 'jabatans.nama_jabatan')
+            ->select('pegawais.*', 'departemens.nama_departemen', 'jabatans.nama_jabatan', 'jabatans.gaji')
             ->get();
 
 
@@ -31,7 +31,7 @@ class PegawaiController extends Controller
             $data = DB::table('pegawais')
                 ->join('departemens', 'pegawais.id_departemen', '=', 'departemens.id_departemen')
                 ->join('jabatans', 'pegawais.id_jabatan', '=', 'jabatans.id_jabatan')
-                ->select('pegawais.*', 'departemens.nama_departemen', 'jabatans.nama_jabatan')
+                ->select('pegawais.*', 'departemens.nama_departemen', 'jabatans.nama_jabatan', 'jabatans.gaji')
                 ->get();
 
                 $data->transform(function ($pegawai) {
@@ -195,6 +195,7 @@ class PegawaiController extends Controller
                 'NIP' => $pegawai->nip,
                 'Departemen' => optional($pegawai->departemen)->nama_departemen,
                 'Jabatan' => optional($pegawai->jabatan)->nama_jabatan,
+                'gaji' => $pegawai->jabatan->gaji,
             ];
         });
 

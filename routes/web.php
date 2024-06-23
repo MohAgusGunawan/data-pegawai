@@ -25,24 +25,29 @@ use App\Http\Controllers\DashboardController;
 //     return view('auth.login');
 // });
 // Route::post('/autentikasi', [LoginController::class, 'autentikasi']);
+
 Auth::routes();
-/*
-|--------------------------------------------------------------------------
-| Halaman Dashboard
-|--------------------------------------------------------------------------
-*/
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
-/*
-|--------------------------------------------------------------------------
-| Halaman Pegawai
-|--------------------------------------------------------------------------
-*/
-Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai');
-
-/*
-|--------------------------------------------------------------------------
-| Halaman CRUD
-|--------------------------------------------------------------------------
-*/
-Route::resource('pegawais', PegawaiController::class);
+// Group middleware auth
+Route::group(['middleware' => 'auth'], function() {
+    /*
+    |--------------------------------------------------------------------------
+    | Halaman Dashboard
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Halaman Pegawai
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai');
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Halaman CRUD
+    |--------------------------------------------------------------------------
+    */
+    Route::resource('pegawais', PegawaiController::class);
+});

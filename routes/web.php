@@ -22,44 +22,33 @@ use App\Http\Controllers\GajiController;
 | Halaman Landing Page
 |--------------------------------------------------------------------------
 */
-Route::get('/', function () {
-    return view('auth.login');
-})->name('login');
-Route::post('/autentikasi', [LoginController::class, 'autentikasi']);
-// Auth::routes();
-/*
-|--------------------------------------------------------------------------
-| Halaman Dashboard
-|--------------------------------------------------------------------------
-*/
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
+// Route::post('/autentikasi', [LoginController::class, 'autentikasi']);
 
-/*
-|--------------------------------------------------------------------------
-| Halaman Pegawai
-|--------------------------------------------------------------------------
-*/
-Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai.index');
+Auth::routes();
 
-/*
-|--------------------------------------------------------------------------
-| Halaman Gaji
-|--------------------------------------------------------------------------
-*/
-Route::get('/gaji', [GajiController::class, 'index'])->name('gaji');
-
-/*
-|--------------------------------------------------------------------------
-| Halaman CRUD
-|--------------------------------------------------------------------------
-*/
-Route::resource('pegawai', PegawaiController::class);
-Route::resource('dashboard', DashboardController::class);
-
-/*
-|--------------------------------------------------------------------------
-| Download Laporan
-|--------------------------------------------------------------------------
-*/
-Route::get('/pegawai/download/1', [PegawaiController::class, 'downloadReport'])->name('pegawai.downloadReport');
-Route::get('/dashboard/download/1', [DashboardController::class, 'downloadReport'])->name('dashboard.downloadReport');
+// Group middleware auth
+Route::group(['middleware' => 'auth'], function() {
+    /*
+    |--------------------------------------------------------------------------
+    | Halaman Dashboard
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Halaman Pegawai
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai');
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Halaman CRUD
+    |--------------------------------------------------------------------------
+    */
+    Route::resource('pegawais', PegawaiController::class);
+});

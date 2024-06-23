@@ -15,7 +15,7 @@ class Pengguna extends Authenticatable
 
     protected $table = 'penggunas'; // Nama tabel di database
 
-    protected $primaryKey = 'id'; // Primary key dari tabel
+    protected $primaryKey = 'id_pengguna'; // Primary key dari tabel
 
     protected $fillable = [
         'username',
@@ -43,4 +43,6 @@ class Pengguna extends Authenticatable
     {
         return $this->password;
     }
+    
+    
 }
